@@ -57,6 +57,26 @@ void RicercaContatto() {
     getchar();
 }
 
+int EliminaContatto() {
+    char cognomeCerca[30];
+    printf("\nInserisci il cognome del contatto da eliminare:\n");
+    scanf("%29s", cognomeCerca);
+    for (int i = 0; i < indice; i++) {
+        if (rubrica[i].cognome == cognomeCerca) {
+            printf("\nContatto eliminato con successo.");
+            for (i; i < indice; i++) {
+                rubrica[i] = rubrica[i + 1];
+            }
+            indice--;
+            printf("\n\nPremi Invio per tornare al menù principale...");
+            getchar();
+            return indice;
+        }
+    }
+    printf("\n\nContatto non trovato, premi Invio per tornare al menù principale...");
+    getchar();
+}
+
 int main(void) {
     char scelta;
     bool exit = true;
