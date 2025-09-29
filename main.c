@@ -29,6 +29,15 @@ int AggiungiContatto() {
     return indice;
 }
 
+void VisualizzaContatti() {
+    for (int i = 0; i < indice; i++) {
+        printf("Nome: %s\n", rubrica[i].nome);
+        printf("Cognome: %s\n", rubrica[i].cognome);
+        printf("Telefono: %s\n", rubrica[i].telefono);
+        printf("\n");
+    }
+}
+
 int main(void) {
     char scelta;
     bool exit = true;
