@@ -8,8 +8,28 @@ struct Contatto {
     char telefono[15];
 };
 
+struct Contatto rubrica[100];
+int indice = 0;
+
+int AggiungiContatto() {
+    if (indice >= 100) {
+        printf("\nSpazio esaurito, non posso più aggiungere contatti.");
+    } else {
+        printf("\nInserisci il nome del contatto da salvare:\n");
+        scanf("%29s", rubrica[indice].nome);
+        printf("\nOra inserisci il cognome del contatto da salvare:\n");
+        scanf("%29s", rubrica[indice].cognome);
+        printf("\nInfine inserisci il numero di telefono del contatto da salvare:\n");
+        scanf("%14s", rubrica[indice].telefono);
+        printf("Contatto aggiunto correttamente.");
+        indice++;
+    }
+    printf("\n\nPremi Invio per tornare al menù principale...");
+    getchar();
+    return indice;
+}
+
 int main(void) {
-    struct Contatto rubrica[100];
     char scelta;
     bool exit = true;
     do {
@@ -24,7 +44,7 @@ int main(void) {
         switch (scelta) {
             case '1':
                 system("clear");
-                AggiungiContatto();
+                indice = AggiungiContatto();
                 break;
             case '2':
                 system("clear");
@@ -44,7 +64,7 @@ int main(void) {
                 break;
             default:
                 system("clear");
-                printf("Scelta non presente nell'elenco, riprova...");
+                printf("Scelta non presente nell'elenco, premi Invio per riprovare...");
                 getchar();
         }
     } while (exit);
