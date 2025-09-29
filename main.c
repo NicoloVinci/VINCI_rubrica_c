@@ -104,7 +104,7 @@ int main(void) {
                 break;
             case '4':
                 system("clear");
-                EliminaContatto();
+                indice = EliminaContatto();
                 break;
             case '5':
                 system("clear");
