@@ -18,10 +18,13 @@ int AggiungiContatto() {
     } else {
         printf("\nInserisci il nome del contatto da salvare:\n");
         fgets(rubrica[indice].nome, 30, stdin);
+        rubrica[indice].nome[strcspn(rubrica[indice].nome, "\n")] = '\0';
         printf("\nOra inserisci il cognome del contatto da salvare:\n");
         fgets(rubrica[indice].cognome, 30, stdin);
+        rubrica[indice].cognome[strcspn(rubrica[indice].cognome, "\n")] = '\0';
         printf("\nInfine inserisci il numero di telefono del contatto da salvare:\n");
         fgets(rubrica[indice].telefono, 15, stdin);
+        rubrica[indice].telefono[strcspn(rubrica[indice].telefono, "\n")] = '\0';
         printf("Contatto aggiunto correttamente.");
         indice++;
     }
@@ -43,7 +46,8 @@ void RicercaContatto() {
     char cognomeCerca[30];
     printf("\nInserisci il cognome del contatto da cercare:\n");
     fgets(cognomeCerca, 30, stdin);
-    for (int i = 0; i < indice; i++) {
+    cognomeCerca[strcspn(cognomeCerca, "\n")] = '\0';
+    for (int i = 0; i < indice - 1; i++) {
         if (strcmp(rubrica[i].cognome, cognomeCerca) == 0) {
             printf("\nContatto trovato, ecco i suoi dati:\n");
             printf("Nome: %s\n", rubrica[i].nome);
@@ -62,6 +66,7 @@ int EliminaContatto() {
     char cognomeCerca[30];
     printf("\nInserisci il cognome del contatto da eliminare:\n");
     fgets(cognomeCerca, 30, stdin);
+    cognomeCerca[strcspn(cognomeCerca, "\n")] = '\0';
     for (int i = 0; i < indice; i++) {
         if (strcmp(rubrica[i].cognome, cognomeCerca) == 0) {
             printf("\nContatto eliminato con successo.");
@@ -80,7 +85,7 @@ int EliminaContatto() {
 }
 
 int main(void) {
-    char scelta;
+    char scelta[3];
     bool exit = true;
     do {
         system("clear");
@@ -90,8 +95,8 @@ int main(void) {
         printf("\n3. Ricerca contatto per cognome");
         printf("\n4. Elimina contatto per cognome");
         printf("\n5. Esci");
-        fgets(&scelta, 1, stdin);
-        switch (scelta) {
+        fgets(scelta, sizeof(scelta), stdin);
+        switch (scelta[0]) {
             case '1':
                 system("clear");
                 indice = AggiungiContatto();
