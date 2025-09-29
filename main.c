@@ -38,6 +38,25 @@ void VisualizzaContatti() {
     }
 }
 
+void RicercaContatto() {
+    char cognomeCerca[30];
+    printf("\nInserisci il cognome del contatto da cercare:\n");
+    scanf("%29s", cognomeCerca);
+    for (int i = 0; i < indice; i++) {
+        if (rubrica[i].cognome == cognomeCerca) {
+            printf("\nContatto trovato, ecco i suoi dati:\n");
+            printf("Nome: %s\n", rubrica[i].nome);
+            printf("Cognome: %s\n", rubrica[i].cognome);
+            printf("Telefono: %s\n", rubrica[i].telefono);
+            printf("\n\nPremi Invio per tornare al menù principale...");
+            getchar();
+            return;
+        }
+    }
+    printf("\n\nContatto non trovato, premi Invio per tornare al menù principale...");
+    getchar();
+}
+
 int main(void) {
     char scelta;
     bool exit = true;
