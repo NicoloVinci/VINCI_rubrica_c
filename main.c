@@ -47,7 +47,7 @@ void RicercaContatto() {
     printf("\nInserisci il cognome del contatto da cercare:\n");
     fgets(cognomeCerca, 30, stdin);
     cognomeCerca[strcspn(cognomeCerca, "\n")] = '\0';
-    for (int i = 0; i < indice - 1; i++) {
+    for (int i = 0; i < indice; i++) {
         if (strcmp(rubrica[i].cognome, cognomeCerca) == 0) {
             printf("\nContatto trovato, ecco i suoi dati:\n");
             printf("Nome: %s\n", rubrica[i].nome);
@@ -70,7 +70,7 @@ int EliminaContatto() {
     for (int i = 0; i < indice; i++) {
         if (strcmp(rubrica[i].cognome, cognomeCerca) == 0) {
             printf("\nContatto eliminato con successo.");
-            for (i; i < indice; i++) {
+            for (i; i < indice - 1; i++) {
                 rubrica[i] = rubrica[i + 1];
             }
             indice--;
