@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct Contatto {
     char nome[30];
@@ -16,11 +17,11 @@ int AggiungiContatto() {
         printf("\nSpazio esaurito, non posso più aggiungere contatti.");
     } else {
         printf("\nInserisci il nome del contatto da salvare:\n");
-        scanf("%29s", rubrica[indice].nome);
+        fgets(rubrica[indice].nome, 30, stdin);
         printf("\nOra inserisci il cognome del contatto da salvare:\n");
-        scanf("%29s", rubrica[indice].cognome);
+        fgets(rubrica[indice].cognome, 30, stdin);
         printf("\nInfine inserisci il numero di telefono del contatto da salvare:\n");
-        scanf("%14s", rubrica[indice].telefono);
+        fgets(rubrica[indice].telefono, 15, stdin);
         printf("Contatto aggiunto correttamente.");
         indice++;
     }
@@ -41,9 +42,9 @@ void VisualizzaContatti() {
 void RicercaContatto() {
     char cognomeCerca[30];
     printf("\nInserisci il cognome del contatto da cercare:\n");
-    scanf("%29s", cognomeCerca);
+    fgets(cognomeCerca, 30, stdin);
     for (int i = 0; i < indice; i++) {
-        if (rubrica[i].cognome == cognomeCerca) {
+        if (strcmp(rubrica[i].cognome, cognomeCerca) == 0) {
             printf("\nContatto trovato, ecco i suoi dati:\n");
             printf("Nome: %s\n", rubrica[i].nome);
             printf("Cognome: %s\n", rubrica[i].cognome);
@@ -60,9 +61,9 @@ void RicercaContatto() {
 int EliminaContatto() {
     char cognomeCerca[30];
     printf("\nInserisci il cognome del contatto da eliminare:\n");
-    scanf("%29s", cognomeCerca);
+    fgets(cognomeCerca, 30, stdin);
     for (int i = 0; i < indice; i++) {
-        if (rubrica[i].cognome == cognomeCerca) {
+        if (strcmp(rubrica[i].cognome, cognomeCerca) == 0) {
             printf("\nContatto eliminato con successo.");
             for (i; i < indice; i++) {
                 rubrica[i] = rubrica[i + 1];
@@ -75,6 +76,7 @@ int EliminaContatto() {
     }
     printf("\n\nContatto non trovato, premi Invio per tornare al menù principale...");
     getchar();
+    return indice;
 }
 
 int main(void) {
@@ -88,7 +90,7 @@ int main(void) {
         printf("\n3. Ricerca contatto per cognome");
         printf("\n4. Elimina contatto per cognome");
         printf("\n5. Esci");
-        scanf("%1c", &scelta);
+        fgets(&scelta, 1, stdin);
         switch (scelta) {
             case '1':
                 system("clear");
@@ -108,7 +110,7 @@ int main(void) {
                 break;
             case '5':
                 system("clear");
-                !exit;
+                exit = false;
                 break;
             default:
                 system("clear");
