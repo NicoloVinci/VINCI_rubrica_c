@@ -54,6 +54,7 @@ void VisualizzaContatti()
 void RicercaContatto()
 {
     char cognomeCerca[30];
+    int trovato = 0;
     printf("\nInserisci il cognome del contatto da cercare:\n");
     fgets(cognomeCerca, 30, stdin);
     cognomeCerca[strcspn(cognomeCerca, "\n")] = '\0';
@@ -65,13 +66,16 @@ void RicercaContatto()
             printf("Nome: %s\n", rubrica[i].nome);
             printf("Cognome: %s\n", rubrica[i].cognome);
             printf("Telefono: %s\n", rubrica[i].telefono);
-            printf("\n\nPremi Invio per tornare al menù principale...");
-            getchar();
-            return;
+            trovato++;
         }
     }
-    printf("\n\nContatto non trovato, premi Invio per tornare al menù principale...");
-    getchar();
+    if (trovato == 0) {
+        printf("\n\nContatto non trovato, premi Invio per tornare al menù principale...");
+        getchar();
+    } else {
+        printf("\n\nPremi Invio per tornare al menù principale...");
+        getchar();
+    }
 }
 
 int EliminaContatto()
